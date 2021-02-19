@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import random
 import io
-import requests
+import random
 
 import mplfinance as fplt
 import pandas as pd
+import requests
 
 ticker = 'aapl.us'  # use ticker as in stooq.com
 url = 'https://stooq.com/q/d/l/?s={}&i=d'.format(ticker)
