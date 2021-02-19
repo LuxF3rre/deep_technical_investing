@@ -1,12 +1,20 @@
 # -*- coding: utf-8 -*-
 
 import random
+import io
+import requests
 
 import mplfinance as fplt
 import pandas as pd
 
+ticker = 'aapl.us'  # use ticker as in stooq.com
+url = 'https://stooq.com/q/d/l/?s={}&i=d'.format(ticker)
+ticker_data = requests.get(target_url)
+ticker_data = ticker_data.text
+buffer = io.StringIO(ticker_data)
+
 ticker_dataframe = pd.read_csv(
-    'data\\aapl.csv', index_col='Date', parse_dates=True).drop(['Volume'], axis=1)
+    buffer, index_col='Date', parse_dates=True).drop(['Volume'], axis=1)
 foresight = 7
 hindsight = 30
 number_of_data = 1000
