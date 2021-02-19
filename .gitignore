@@ -1,3 +1,6 @@
 /.vscode
 /.venv
 /data
+/static
+/database
+poetry.lock
