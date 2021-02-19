@@ -8,7 +8,6 @@ from bottle import route, run, template, static_file, get
 
 # install(SQLitePlugin(dbfile='database/db.db'))
 
-# Static Routes
 @get("/static/css/<filepath:re:.*\.css>")
 def css(filepath):
     return static_file(filepath, root="static/css")
