@@ -4,8 +4,7 @@ from fastai.vision.widgets import *
 from fastbook import *
 from pathlib import Path
 
-recommendation_types = ['buy', 'sell']
-chart_folder = Path('../input/candlestick-charts-of-apple-stock')
+chart_folder = Path('data')
 fns = get_image_files(chart_folder)
 
 charts = DataBlock(
