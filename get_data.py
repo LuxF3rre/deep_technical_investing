@@ -2,6 +2,7 @@
 
 import io
 import random
+from pathlib import Path
 
 import mplfinance as fplt
 import pandas as pd
@@ -46,5 +47,11 @@ def generate_sets(ticker_data, number_of_data, forecast_in_ticks, hindsight_in_t
                   savefig=save_to)
         print('Finished {} of {}'.format(x + 1, number_of_data))
 
+
+required_paths = [Path('data'), Path('data\\sell'), Path('data\\buy')]
+
+for path in required_paths:
+    if not path.exists():
+        path.mkdir()
 
 generate_sets(ticker_dataframe, number_of_data, foresight, hindsight)
