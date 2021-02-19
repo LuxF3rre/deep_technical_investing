@@ -4,7 +4,6 @@ import random
 import io
 import fastai
 import mplfinance as fplt
-import numpy as np
 import pandas as pd
 
 ticker_dataframe = pd.read_csv(
@@ -31,7 +30,6 @@ def generate_sets(ticker_data, number_of_training_sets, number_of_test_sets, for
     random_pointers = list()
     for x in range(number_of_test_sets + number_of_training_sets):
         random_pointers.append(random.randint(hindsight_in_ticks, len(ticker_data) - forecast_in_ticks))
-    print(random_pointers)
 
     for x in range(number_of_training_sets):
         data = get_ticker_slice(ticker_data, random_pointers[x], forecast_in_ticks, hindsight_in_ticks)
