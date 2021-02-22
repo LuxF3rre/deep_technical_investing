@@ -1,6 +1,5 @@
 /.vscode
 /.venv
-/data
-/static
-/views
+/data/model_data/
 poetry.lock
+*.xlsx
