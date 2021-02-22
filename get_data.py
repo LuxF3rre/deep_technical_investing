@@ -23,23 +23,17 @@ class SetGenerator():
         self.number_of_data = number_of_data_
 
     def get_ticker_slice(self, pointer):
-        # print('Righ hand cut')
         ticker_data_slice = self.ticker_data.iloc[:pointer + self.foresight]
-        # print(ticker_data_slice.tail())
 
-        # print('Left hand cut')
         ticker_data_slice = ticker_data_slice.iloc[-self.foresight - self.hindsight:]
-        # print(ticker_data_slice.head())
 
         assert len(ticker_data_slice) == self.foresight + self.hindsight
         return ticker_data_slice
 
     def foresight_buy_or_sell(self, slide_of_ticker_data):
         current = slide_of_ticker_data['Close'].iloc[-self.foresight - 1]
-        # print('Current price = {}'.format(current))
 
         future = slide_of_ticker_data['Close'].iloc[-1]
-        # print('Future price = {}'.format(future))
 
         return 'buy' if current < future else 'sell'
 
@@ -48,20 +42,12 @@ class SetGenerator():
             random_pointer = random.randint(
                 self.hindsight, len(self.ticker_data) - self.foresight)
 
-            # print('Random pointer = {}'.format(random_pointer))
-
             data = self.get_ticker_slice(random_pointer)
-
-            # print('Data slice = ')
-            # print(data)
 
             buy_or_sell = self.foresight_buy_or_sell(data)
 
-            # print('Recommendation = {}'.format(buy_or_sell))
-
             save_to = 'data\\model_data\\{}\\{}.png'.format(buy_or_sell, x)
 
-            # print('Saving to {}'.format(save_to))
             assert len(data.iloc[:self.hindsight]) == self.hindsight
             fplt.plot(data.iloc[:self.hindsight],
                       type='candle', savefig=save_to)
